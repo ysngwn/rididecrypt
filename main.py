@@ -139,16 +139,20 @@ def get_key(device_id, dat_path):
     return plaintext[68:84]
 
 
-def decrypt_file(secret_key, file_path):
+def decrypt_file(secret_key, file_path, in_place = True):
     with open(file_path, "rb") as infile:
         iv = infile.read(16)
         ciphertext = infile.read()
 
     cipher = AES.new(secret_key, AES.MODE_CBC, bytes(iv))
     plaintext = cipher.decrypt(pad(ciphertext, 16))
-
-    with open(file_path, "wb") as outfile:
+    if in_place:
+        outpath=file_path
+    else:
+        outpath = F'{file_path}.tmp'
+    with open(outpath, "wb") as outfile:
         outfile.write(plaintext)
+    return outpath
 
 
 ################################################################################
@@ -278,8 +282,9 @@ def process_epub(book_dir):
         unpack_dir = unpack_epub(epub_path)
         decrypt_dir(secret_key, unpack_dir)
     else:
-        decrypt_file(secret_key, epub_path)
-        unpack_dir = unpack_epub(epub_path)
+        decrypted_epub = decrypt_file(secret_key, epub_path,in_place=False)
+        unpack_dir = unpack_epub(decrypted_epub)
+        rmf(decrypted_epub)
 
     dest_dir = pack_epub(unpack_dir)
     rmtree(unpack_dir)
