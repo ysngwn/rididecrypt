@@ -190,9 +190,20 @@ def get_title(soup):
     return sanitize(title)
 
 
-def is_comic(book_dir):
-    pattern = os.path.join(book_dir, "*.epub")
-    return len(list(glob.glob(pattern))) == 0
+def get_type(book_dir):
+    ext_list = ["epub", "zip"]
+
+    for ext in ext_list:
+        pattern = os.path.join(book_dir, f"*.{ext}")
+        if len(list(glob.glob(pattern))) == 1:
+            return ext
+    print(f"No file with epub, zip, or pdf extension found in {book_dir}")
+    print(f"Contents of {book_dir}:")
+    pattern = os.path.join(book_dir, "*")
+    file_list = list(glob.glob(pattern))
+    for f in file_list:
+        print(f)
+    quit()
 
 
 def zip_dir(zip_object, base_path, dir_path):
@@ -303,13 +314,13 @@ def main():
         quit()
 
     book_dir = args[1]
-
-    if is_comic(book_dir):
-        dest_dir = process_comic(book_dir)
+    book_type = get_type(book_dir)
+    if book_type == "zip":
+        dst = process_comic(book_dir)
     else:
-        dest_dir = process_epub(book_dir)
+        dst = process_epub(book_dir)
 
-    print(f"Decrypted book can be found at {dest_dir}")
+    print(f"Decrypted book can be found at {dst}")
 
 
 if __name__ == "__main__":
