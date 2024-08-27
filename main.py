@@ -191,7 +191,7 @@ def get_title(soup):
 
 
 def get_type(book_dir):
-    ext_list = ["epub", "zip"]
+    ext_list = ["epub", "zip", "pdf"]
 
     for ext in ext_list:
         pattern = os.path.join(book_dir, f"*.{ext}")
@@ -305,6 +305,20 @@ def process_epub(book_dir):
     return dest_dir
 
 
+################################################################################
+# PDF functions
+################################################################################
+def process_pdf(book_dir):
+    book_code = os.path.basename(os.path.normpath(book_dir))
+    pdf_path = glob.glob(Rf"{book_dir}\{book_code}*.pdf")[0]
+    dat_path = glob.glob(Rf"{book_dir}\{book_code}*.dat")[0]
+    dat_path = os.path.abspath(dat_path)
+    secret_key = get_key(device_id, dat_path)
+    decrypted_pdf = decrypt_file(secret_key, pdf_path, in_place=False)
+    dst = os.rename(decrypted_pdf, Rf"{book_dir}\decrypted.pdf")
+    return dst
+
+
 def main():
     load_settings()
 
@@ -317,6 +331,8 @@ def main():
     book_type = get_type(book_dir)
     if book_type == "zip":
         dst = process_comic(book_dir)
+    if book_type == "pdf":
+        dst = process_pdf(book_dir)
     else:
         dst = process_epub(book_dir)
 
