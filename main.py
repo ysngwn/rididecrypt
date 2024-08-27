@@ -70,7 +70,9 @@ def load_settings():
         with open("settings.json") as rf:
             settings = json.load(rf)
     except:
-        settings = {}
+        settings = {"device_id": "", "usercode": ""}
+        with open("settings.json", "w") as wf:
+            json.dump(settings, wf)
 
     if not settings.get("device_id", None):
         user_info = get_user_info()
