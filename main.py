@@ -292,29 +292,6 @@ def process_epub(book_dir):
     return dest_dir
 
 
-################################################################################
-# Unused functions (for now)
-################################################################################
-def parse_settings():
-    user_code = 1234567
-    with open(Rf"{APPDATA}\Ridibooks\datastores\global\Settings", "rb") as rf:
-        ciphertext = rf.read()
-    key = hashlib.sha1(f"Settings-{user_code}".encode()).hexdigest()[2:18]
-    cipher = AES.new(key.encode(), AES.MODE_ECB)
-    plaintext = cipher.decrypt(ciphertext[256:])
-    return plaintext
-
-
-def list_books():
-    with open(Rf"{APPDATA}\Ridibooks\datastores\user\_{usercode}\DownloadBookAll", "rb") as rf:
-        ciphertext = rf.read()
-    key = hashlib.sha1(f"DownloadBookAll-{usercode}".encode()).hexdigest()[2:18]
-    cipher = AES.new(key.encode(), AES.MODE_ECB)
-    plaintext = cipher.decrypt(ciphertext[256:])
-    # plaintext = unpad(plaintext, 16)
-    return json.loads(plaintext)
-
-
 def main():
     load_settings()
 
