@@ -191,10 +191,11 @@ def get_title(soup):
 
 
 def get_type(book_dir):
+    book_code = os.path.basename(os.path.normpath(book_dir))
     ext_list = ["epub", "zip"]
 
     for ext in ext_list:
-        pattern = os.path.join(book_dir, f"*.{ext}")
+        pattern = os.path.join(book_dir, f"{book_code}*.{ext}")
         if len(list(glob.glob(pattern))) == 1:
             return ext
     print(f"No file with epub, zip, or pdf extension found in {book_dir}")
