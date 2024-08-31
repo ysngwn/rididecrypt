@@ -202,7 +202,10 @@ def get_type(book_dir):
     pattern = os.path.join(book_dir, "*")
     file_list = list(glob.glob(pattern))
     for f in file_list:
-        print(f)
+        try:
+            print(f'  {f}')
+        except:
+            print(f'  {str(f.encode('utf-8'))}')
     quit()
 
 
