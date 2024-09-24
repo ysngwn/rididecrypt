@@ -35,7 +35,7 @@ Currently only supports Windows
 
 1. Clone the repo
    ```sh
-   git clone [https://github.com/jkim2492/rididecrypt](https://github.com/jkim2492/rididecrypt.git)
+   git clone https://github.com/jkim2492/rididecrypt.git
    cd rididecrypt
    ```
 2. Install requirements
