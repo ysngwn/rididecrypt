@@ -53,7 +53,7 @@ Currently only supports Windows
 ### Example
 To decrypt an `epub` file located at `%appdata%\R***books\library\<user_code>\<book_code>\$book_code.epub`, pass the `dirname` of the `epub` file as the argument to the script
    ```sh
-   python main.py %appdata%\R***books\library\<user_code>\<book_code>
+   python main.py '%appdata%\R***books\library\<user_code>\<book_code>'
    ```
 Similarly, to decrypt a comic book `zip` file located at `%appdata%\R***books\library\<user_code>\<book_code>\$book_code.zip`, pass the `dirname` as the argument, as above
 <!-- ROADMAP -->
