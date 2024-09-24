@@ -56,6 +56,14 @@ To decrypt an `epub` file located at `%appdata%\R***books\library\<user_code>\<b
    python main.py '%appdata%\R***books\library\<user_code>\<book_code>'
    ```
 Similarly, to decrypt a comic book `zip` file located at `%appdata%\R***books\library\<user_code>\<book_code>\$book_code.zip`, pass the `dirname` as the argument, as above
+
+### Manually adding device id
+
+1. Install the Ridibooks client on your PC and sign in
+2. Sign in to https://ridibooks.com
+3. Open https://account.ridibooks.com/api/user-devices/app to see a list of device ids
+4. Copy the device id used by your PC
+5. Open `settings.json` and add the copied value to `device_id`
 <!-- ROADMAP -->
 ## Roadmap
 
