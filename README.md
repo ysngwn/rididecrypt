@@ -21,7 +21,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-A command-line tool to remove DRM of comic books or `epub` files from a "specific website"
+A command-line tool to remove DRM of epubs and comics (not webtoons) from a "specific website"
 
 Currently only supports Windows
 
