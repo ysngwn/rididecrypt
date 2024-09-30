@@ -73,8 +73,8 @@ Similarly, to decrypt a comic book `zip` file located at `%appdata%\R***books\li
 ## Roadmap
 
 - [ ] Comic book support -- Done! ✅
-- [ ] PDF support
-- [ ] Interactive mode
+- [ ] PDF support -- Done? ✅
+- [ ] GUI coming soon
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
