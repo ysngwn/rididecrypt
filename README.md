@@ -24,7 +24,12 @@
 A command-line tool to remove DRM of epubs and comics (not webtoons) from a "specific website"
 
 Currently only supports Windows
-
+### Recent Changes
+* Now reads metadata by decrypting the settings. This means:
+  * Device id will no longer be fetched from the API and will be resolved automatically
+  * Books will be decrypted with proper titles
+* Instead of decrypting to the original path, output path can be specified. By default, decrypted books will be written to `./books`
+* Command-line options to list books and decrypt all books
 ### Built With
 
 * Hatred for DRM
