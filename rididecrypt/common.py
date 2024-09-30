@@ -6,6 +6,9 @@ def log_err(s):
     print(s)
     print(traceback.format_exc())
 
+def log_out(s):
+    print(s)
+
 def get_user_id():
     users_dir = RIDI_HOME / "datastores" / "user"
     user_list = [item for item in users_dir.iterdir() if item.is_dir()]

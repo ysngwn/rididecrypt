@@ -5,20 +5,20 @@ from rididecrypt import *
 
 
 def print_all_books():
-    print("book id", "title", "path")
+    log_out("book id", "title", "path")
     path_list = [item for item in LIBRARY_PATH.iterdir() if item.is_dir()]
     for path in path_list:
         book_id = path.name
         book = Book(book_id)
         title = book.title
-        print(f"{book_id}, {title}, {path}")
+        log_out(f"{book_id}, {title}, {path}")
 
 
 def process_all_books(dst_dir):
     path_list = [item for item in LIBRARY_PATH.iterdir() if item.is_dir()]
     total = len(path_list)
     for i, path in enumerate(path_list):
-        print(f"Progress: {i}/{total}")
+        log_out(f"Progress: {i}/{total}")
         book_id = path.name
         book = Book(book_id)
         process(book, dst_dir)
@@ -48,7 +48,7 @@ def main():
         quit()
 
     if not args.book and not args.all:
-        print("Please specify a book or --all")
+        log_out("Please specify a book or --all")
         parser.print_help()
         quit()
     try:

@@ -89,7 +89,7 @@ fns = {
 
 
 def process(book, dst_dir):
-    print(f"Decrypting: {book.title}")
+    log_out(f"Decrypting: {book.title}")
     decrypt = fns[book.book_format]
     dst = decrypt(book, dst_dir)
-    print(f"Decrypted file: {dst.resolve()}")
+    log_out(f"Decrypted file: {dst.resolve()}")
