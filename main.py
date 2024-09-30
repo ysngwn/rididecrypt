@@ -206,7 +206,7 @@ def get_type(book_dir):
         try:
             print(f'  {f}')
         except:
-            print(f'  {str(f.encode('utf-8'))}')
+            print(f'  {str(f.encode("utf-8"))}')
     quit()
 
 
