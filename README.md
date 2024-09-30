@@ -30,6 +30,9 @@ Currently only supports Windows
   * Books will be decrypted with proper titles
 * Instead of decrypting to the original path, output path can be specified. By default, decrypted books will be written to `./books`
 * Command-line options to list books and decrypt all books
+
+Previous version is available in the `v0` branch
+
 ### Built With
 
 * Hatred for DRM
