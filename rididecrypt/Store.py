@@ -5,6 +5,7 @@ from Cryptodome.Cipher import AES
 import json
 from pathlib import Path
 from .common import *
+from base64 import b64encode, b64decode
 
 
 def get_password(setting_name):
@@ -17,7 +18,8 @@ def get_password(setting_name):
 def get_global_key(encoding="utf-16le"):
     setting_name = "global"
     key = get_password(setting_name)
-    key = key.encode(encoding).decode('utf8')
+    key = key.encode(encoding)
+    key = b64encode(key).decode("utf8")
     hex_key = tr_key(key)
     byte_key = bytes.fromhex(hex_key)
     byte_key = pad(byte_key, 16)
@@ -37,6 +39,7 @@ def get_key(config_name, uid):
 def tr_key(k):
     cmd = f"""
     e = Buffer.from('{k}', "base64").toString("utf8")
+    e = Buffer.from(e, "base64").toString("utf8")
     process.stdout.write(Buffer.from(e).toString("hex"))
     """
     node_output = node.run(["-e", cmd], capture_output=True)
